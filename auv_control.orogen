@@ -318,4 +318,16 @@ task_context "OptimalHeadingController" do
     error_states :WAIT_FOR_ORIENTATION_SAMPLE
 end
 
+# Task that works as switch betwen two commands
+task_context "CommadSwitch" do
+    #The command, that is used normaly
+    input_port "cmd_in_default", "base::LinearAngular6DCommand"
 
+    #Tis command is writen, when it is on this input-port and not older then the default command + optional_write_time
+    input_port "cmd_in_optional", "base::LinearAngular6DCommand"
+
+    #The output command
+    output_port "cmd_out", "base::LinearAngular6DCommand"
+
+    property "optional_write_time", "double", 0.0
+end
